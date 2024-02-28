@@ -167,14 +167,6 @@ class MAS():
                     f"{self.list_filePath}."
                 )
 
-        else:
-            body = (
-                f"Hi,\n\nDe service voor {self.nodename} "
-                f"staat uit, je hoeft even geen "
-                f"commando's te sturen.\n\n"
-                f"Fijne dag!\n\n"
-            )
-
         # logfile = open(self.log_filePath, "r")
         # body += ''.join(logfile.readlines())
         # logfile.close()
