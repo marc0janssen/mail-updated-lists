@@ -8,6 +8,7 @@ import sys
 import configparser
 import shutil
 import smtplib
+import os
 
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
@@ -152,6 +153,8 @@ class MAS():
                     f"SeriesAdded - Sending movie list to "
                     f"{receiver_email}"
                 )
+
+                os.remove(self.list_filePath)
 
             except FileNotFoundError:
                 logging.error(
