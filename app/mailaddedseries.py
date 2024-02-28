@@ -167,61 +167,61 @@ class MAS():
                     f"{self.list_filePath}."
                 )
 
-        # logfile = open(self.log_filePath, "r")
-        # body += ''.join(logfile.readlines())
-        # logfile.close()
+            # logfile = open(self.log_filePath, "r")
+            # body += ''.join(logfile.readlines())
+            # logfile.close()
 
-        plain_text = MIMEText(
-            body, _subtype='plain', _charset='UTF-8')
-        message.attach(plain_text)
+            plain_text = MIMEText(
+                body, _subtype='plain', _charset='UTF-8')
+            message.attach(plain_text)
 
-        my_message = message.as_string()
+            my_message = message.as_string()
 
-        try:
-            email_session = smtplib.SMTP(
-                self.mail_server, self.mail_port)
-            email_session.starttls()
-            email_session.login(
-                self.mail_login, self.mail_password)
-            email_session.sendmail(
-                sender_email,
-                [receiver_email],
-                my_message
-                )
-            email_session.quit()
+            try:
+                email_session = smtplib.SMTP(
+                    self.mail_server, self.mail_port)
+                email_session.starttls()
+                email_session.login(
+                    self.mail_login, self.mail_password)
+                email_session.sendmail(
+                    sender_email,
+                    [receiver_email],
+                    my_message
+                    )
+                email_session.quit()
 
-            if self.verbose_logging:
-                logging.info(
-                    f"SeriesAdded - Mail Sent to "
-                    f"{receiver_email}."
-                )
-
-            self.writeLog(
-                False,
-                f"SeriesAdded - Mail Sent to "
-                f"{receiver_email}.\n"
-            )
-
-            self.message = \
-                self.userPushover.send_message(
-                    message=f"SeriesAdded - "
-                    f"Series list sent to "
-                    f"{receiver_email}",
-                    sound=self.pushover_sound
+                if self.verbose_logging:
+                    logging.info(
+                        f"SeriesAdded - Mail Sent to "
+                        f"{receiver_email}."
                     )
 
-        except (gaierror, ConnectionRefusedError):
-            logging.error(
-                "Failed to connect to the server. "
-                "Bad connection settings?")
-        except smtplib.SMTPServerDisconnected:
-            logging.error(
-                "Failed to connect to the server. "
-                "Wrong user/password?"
-            )
-        except smtplib.SMTPException as e:
-            logging.error(
-                f"SMTP error occurred: {str(e)}.")
+                self.writeLog(
+                    False,
+                    f"SeriesAdded - Mail Sent to "
+                    f"{receiver_email}.\n"
+                )
+
+                self.message = \
+                    self.userPushover.send_message(
+                        message=f"SeriesAdded - "
+                        f"Series list sent to "
+                        f"{receiver_email}",
+                        sound=self.pushover_sound
+                        )
+
+            except (gaierror, ConnectionRefusedError):
+                logging.error(
+                    "Failed to connect to the server. "
+                    "Bad connection settings?")
+            except smtplib.SMTPServerDisconnected:
+                logging.error(
+                    "Failed to connect to the server. "
+                    "Wrong user/password?"
+                )
+            except smtplib.SMTPException as e:
+                logging.error(
+                    f"SMTP error occurred: {str(e)}.")
 
 
 if __name__ == '__main__':
