@@ -32,7 +32,7 @@ class MAS():
         self.config_file = "mailupdatedlists.ini"
         self.exampleconfigfile = "mailupdatedlists.ini.example"
         self.log_file = "mailaddedseries.log"
-        self.serieslist = "dl_radarr.txt"
+        self.serieslist = "dl_sonarr.txt"
 
         self.config_filePath = f"{config_dir}{self.config_file}"
         self.log_filePath = f"{log_dir}{self.log_file}"
