@@ -125,7 +125,7 @@ class MAM():
         message["From"] = sender_email
         message['To'] = receiver_email
         message['Subject'] = (
-            f"Movie Lijst - {self.nodename}"
+            f"Movies toegevoegd - {self.nodename}"
         )
 
         # attachment = open(self.log_filePath, 'rb')
