@@ -144,13 +144,13 @@ class MAS():
                     body = file.read()
 
                 logging.info(
-                    f"SeriesAdded - Sending movie list to "
+                    f"SeriesAdded - Sending series list to "
                     f"{receiver_email}"
                     )
 
                 self.writeLog(
                     False,
-                    f"SeriesAdded - Sending movie list to "
+                    f"SeriesAdded - Sending series list to "
                     f"{receiver_email}"
                 )
 
