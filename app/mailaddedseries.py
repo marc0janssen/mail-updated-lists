@@ -204,9 +204,8 @@ class MAS():
 
                 self.message = \
                     self.userPushover.send_message(
-                        message=f"SeriesAdded - "
-                        f"Series list sent to "
-                        f"{receiver_email}",
+                        message="SeriesAdded - "
+                        "Series list sent.",
                         sound=self.pushover_sound
                         )
 

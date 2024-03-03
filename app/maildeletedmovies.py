@@ -204,9 +204,8 @@ class MDM():
 
                 self.message = \
                     self.userPushover.send_message(
-                        message=f"MoviesAdded - "
-                        f"Movies list sent to "
-                        f"{receiver_email}",
+                        message="MoviesAdded - "
+                        "Movies list sent.",
                         sound=self.pushover_sound
                         )
 
