@@ -209,7 +209,7 @@ class MDM():
 
             except FileNotFoundError:
                 pass
-            
+
             except IOError:
                 logging.error(
                     f"Can't read file "
