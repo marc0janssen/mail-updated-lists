@@ -1,7 +1,7 @@
-# Name: mailadeletedmovies
+# Name: mailadeletedseries
 # Coder: Marco Janssen (mastodon @marc0janssen@mastodon.online)
-# date: 2024-02-28 19:36:00
-# update: 2024-02-28 19:36:00
+# date: 2024-03-10 11:36:00
+# update: 2024-03-10 11:36:00
 
 import logging
 import sys
@@ -32,12 +32,12 @@ class MDM():
 
         self.config_file = "mailupdatedlists.ini"
         self.exampleconfigfile = "mailupdatedlists.ini.example"
-        self.log_file = "mailadeletedmovies.log"
-        self.movieslist = "del_radarr.txt"
+        self.log_file = "mailadeletedseries.log"
+        self.serieslist = "del_sonarr.txt"
 
         self.config_filePath = f"{config_dir}{self.config_file}"
         self.log_filePath = f"{log_dir}{self.log_file}"
-        self.list_filePath = f"{config_dir}{self.movieslist}"
+        self.list_filePath = f"{config_dir}{self.serieslist}"
 
         try:
             with open(self.config_filePath, "r") as f:
@@ -64,9 +64,9 @@ class MDM():
                 self.mail_password = self.config['MAIL']['MAIL_PASSWORD']
                 self.mail_sender = self.config['MAIL']['MAIL_SENDER']
 
-                # MOVIES
+                # SERIES
                 self.receivers = list(
-                    self.config['MOVIES']['RECEIVERS'].split(","))
+                    self.config['SERIES']['RECEIVERS'].split(","))
 
                 # PUSHOVER
                 self.pushover_user_key = self.config['PUSHOVER']['USER_KEY']
@@ -125,7 +125,7 @@ class MDM():
         message["From"] = sender_email
         message['To'] = receiver_email
         message['Subject'] = (
-            f"Movies verwijderd - {self.nodename}"
+            f"Series verwijderd - {self.nodename}"
         )
 
         # attachment = open(self.log_filePath, 'rb')
@@ -144,13 +144,13 @@ class MDM():
                     body = file.read()
 
                 logging.info(
-                    f"MoviesDeleted - Sending movie list to "
+                    f"SeriesDeleted - Sending serie list to "
                     f"{receiver_email}"
                     )
 
                 self.writeLog(
                     False,
-                    f"MoviesDeleted - Sending movie list to "
+                    f"SeriesDeleted - Sending serie list to "
                     f"{receiver_email}"
                 )
 
@@ -192,20 +192,20 @@ class MDM():
 
                 if self.verbose_logging:
                     logging.info(
-                        f"MoviesDeleted - Mail Sent to "
+                        f"SeriesDeleted - Mail Sent to "
                         f"{receiver_email}."
                     )
 
                 self.writeLog(
                     False,
-                    f"MoviesDeleted - Mail Sent to "
+                    f"SeriesDeleted - Mail Sent to "
                     f"{receiver_email}.\n"
                 )
 
                 self.message = \
                     self.userPushover.send_message(
-                        message="MoviesDeleted - "
-                        "Movies list sent.",
+                        message="SeriesDeleted - "
+                        "Series list sent.",
                         sound=self.pushover_sound
                         )
 
@@ -225,6 +225,6 @@ class MDM():
 
 if __name__ == '__main__':
 
-    mailadeletedmovies = MDM()
-    mailadeletedmovies.run()
-    mailadeletedmovies = None
+    mailadeletedseries = MDM()
+    mailadeletedseries.run()
+    mailadeletedseries = None
