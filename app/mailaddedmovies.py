@@ -28,7 +28,7 @@ class MAM():
 
         config_dir = "/config/"
         app_dir = "/app/"
-        log_dir = "/logging/lists/"
+        log_dir = "/var/log/"
 
         self.config_file = "mailupdatedlists.ini"
         self.exampleconfigfile = "mailupdatedlists.ini.example"
